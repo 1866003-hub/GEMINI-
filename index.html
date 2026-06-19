@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chromebook Craft - V1.0</title>
+    <style>
+        * { box-sizing: border-box; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: 'Courier New', Courier, monospace; background-color: #87CEEB; }
+        
+        /* 画面中央の照準（レティクル） */
+        #crosshair {
+            position: absolute; top: 50%; left: 50%;
+            width: 20px; height: 20px;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 24px; font-weight: bold;
+            pointer-events: none; user-select: none;
+            z-index: 5; text-align: center; line-height: 16px;
+        }
+        
+        /* スタート画面（Chromebookの負荷を下げるためシンプルなCSS設計） */
+        #instructions {
+            position: absolute; width: 100%; height: 100%;
+            background-color: rgba(16, 20, 30, 0.85);
+            color: #ffffff; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; cursor: pointer; z-index: 10;
+        }
+        .btn-start {
+            background-color: #4CAF50; border: 3px solid #2e7d32;
+            color: white; padding: 15px 32px; text-align: center;
+            font-size: 20px; font-weight: bold; margin: 20px; cursor: pointer;
+            box-shadow: 0 4px #1b5e20;
+        }
+        .btn-start:active { transform: translateY(4px); box-shadow: none; }
+        .controls { background: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 5px; text-align: left; font-size: 14px; line-height: 1.6; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="instructions">
+        <h1 style="font-size: 32px; margin-bottom: 5px;">CHROMEBOOK CRAFT</h1>
+        <p style="color: #aaa; margin-top: 0;">Version 1.0 (Lightweight Edition)</p>
+        <button class="btn-start">ゲームを始める</button>
+        <div class="controls">
+            <strong>【操作方法】</strong><br>
+            ・移動: <span style="color:#ffeb3b">W, A, S, D</span><br>
+            ・ジャンプ: <span style="color:#ffeb3b">SPACE</span><br>
+            ・視点変更: <span style="color:#ffeb3b">マウスを動かす</span><br>
+            ・ブロック破壊: <span style="color:#ffeb3b">左クリック</span><br>
+            ・ブロック設置: <span style="color:#ffeb3b">右クリック</span><br>
+            ・ゲーム中断: <span style="color:#ffeb3b">ESCキー</span>
+        </div>
+    </div>
+    <div id="crosshair">+</div>
+
+    <script src="game.js"></script>
+</body>
+</html>
