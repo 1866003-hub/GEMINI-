@@ -66,15 +66,28 @@ let prevTime = performance.now();
 const instructions = document.getElementById('instructions');
 
 // クリックしたら画面をロックしてゲーム開始
-instructions.addEventListener('click', () => {
+// ==========================================
+// 4. 操作システム（ポインターロック＆キーボード）改良版
+// ==========================================
+let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
+let velocity = new THREE.Vector3();
+let direction = new THREE.Vector3();
+let canJump = false;
+let prevTime = performance.now();
+
+const instructions = document.getElementById('instructions');
+
+// 【改良】ボタンだけでなく、画面全体どこをクリックしても起動するように強化
+document.body.addEventListener('click', () => {
     document.body.requestPointerLock();
 });
 
+// 【改良】ロック状態を確実に検知して画面を切り替える
 document.addEventListener('pointerlockchange', () => {
     if (document.pointerLockElement === document.body) {
-        instructions.style.display = 'none';
+        instructions.style.display = 'none'; // スタート画面を消す
     } else {
-        instructions.style.display = 'flex';
+        instructions.style.display = 'flex'; // ESCを押したらスタート画面に戻す
     }
 });
 
